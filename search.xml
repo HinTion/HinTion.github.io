@@ -4,6 +4,45 @@
   
     
     <entry>
+      <title></title>
+      <link href="/2024/12/22/%E5%90%8E%E7%AB%AF%E8%B8%A9%E5%9D%91/"/>
+      <url>/2024/12/22/%E5%90%8E%E7%AB%AF%E8%B8%A9%E5%9D%91/</url>
+      
+        <content type="html"><![CDATA[<h1 id="无法获取数据源连接池"><a href="#无法获取数据源连接池" class="headerlink" title="无法获取数据源连接池"></a>无法获取数据源连接池</h1><p>Could not open JDBC Connection for transaction</p><p>MyBatis自己单独运行的时候运行SQL语句是不会自动释放数据源连接的，<strong>但和Spring整合后就会自动释放数据源连接了</strong>。Spring改变了MyBatis的SqlSession，改成Spring整合包中的SqlSessionTemplate</p><ol><li>@Transactional</li></ol><p>在方法上添加注解@Transactional将该方法标记成事务，也会自动释放连接</p><p>2、使用完sqlSession后手动关闭sqlSession</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/2024/12/02/SpringSecurity/"/>
+      <url>/2024/12/02/SpringSecurity/</url>
+      
+        <content type="html"><![CDATA[<p>【动力节点SpringSecurity视频教程，springsecurity，jwt实战精讲】 <a href="https://www.bilibili.com/video/BV1DV4y1Z71y/?p=2&share_source=copy_web&vd_source=41778f047a8e065ac16a249788beb2fb">https://www.bilibili.com/video/BV1DV4y1Z71y/?p=2&amp;share_source=copy_web&amp;vd_source=41778f047a8e065ac16a249788beb2fb</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/2024/11/30/springboot%E9%A1%B9%E7%9B%AE%E5%B1%82%E7%BA%A7%E6%9E%B6%E6%9E%84/"/>
+      <url>/2024/11/30/springboot%E9%A1%B9%E7%9B%AE%E5%B1%82%E7%BA%A7%E6%9E%B6%E6%9E%84/</url>
+      
+        <content type="html"><![CDATA[<h1 id="POJO对象"><a href="#POJO对象" class="headerlink" title="POJO对象"></a>POJO对象</h1><p>&#x2F;&#x2F; DTO   data transfer Object,  Request, Response<br>&#x2F;&#x2F; VO    视图对象<br>&#x2F;&#x2F; BO    business Object , 系统内部逻辑处理.<br>&#x2F;&#x2F; DO    数据访问对象,  数据库表的对象<br>&#x2F;&#x2F; PO    持久层对象,  数据库表的对象</p><h2 id="PO-DO"><a href="#PO-DO" class="headerlink" title="PO &#x2F; DO"></a>PO &#x2F; DO</h2><p>persistenet &#x2F; data 持久化对象, 属性与数据库里的字段一一对应</p><h2 id="VO"><a href="#VO" class="headerlink" title="VO"></a>VO</h2><p>view视图对象, 页面展示需要的数据</p><h2 id="DTO"><a href="#DTO" class="headerlink" title="DTO"></a>DTO</h2><p>data transfer 数据传输对象, service&#x2F; manager 向外传输的对象</p><p>Eg. 某张表里有50个字段, PO&#x2F;DO 就有50个属性, 但是在页面显示只需要10个字段, 那就不需要将所有字段都传输过去,  应该用有这10个属性的DTO传递</p><h2 id="BO"><a href="#BO" class="headerlink" title="BO"></a>BO</h2><p>business 业务对象, Service层内封装的临时业务逻辑的对象, 调用 DAO 方法 , 结合 PO、VO 进行业务操作。 一个BO对象可以包括多个PO对象</p><h1 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h1><h2 id="统一入参-出参"><a href="#统一入参-出参" class="headerlink" title="统一入参, 出参"></a>统一入参, 出参</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Result&lt;List&lt;BookVO&gt;&gt; <span class="title function_">findDetail2</span><span class="params">(Request&lt;BookDetailQueryRequest&gt; request)</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>统一返回Result具体的用法,BookVO</p><p>统一入参Request具体的用法</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BookDetailQueryRequest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> PageRequest pageRequest;</span><br><span class="line">    <span class="comment">// 出版社</span></span><br><span class="line">    <span class="comment">// 作者</span></span><br><span class="line">    <span class="comment">// 图书管</span></span><br><span class="line">    <span class="comment">// 书名</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>测试事例</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;authRequest&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;accessKey&quot;</span><span class="punctuation">:</span> <span class="string">&quot;supplyChain&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;timeStamp&quot;</span><span class="punctuation">:</span> <span class="number">1000</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;signature&quot;</span><span class="punctuation">:</span> <span class="string">&quot;some_signature&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;operatorRequest&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;nonce&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;param&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;pageRequest&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;pageNo&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;pageSize&quot;</span><span class="punctuation">:</span> <span class="number">200</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;书&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><p>捕获异常, try{} catch{}</p><p><img src="https://i-blog.csdnimg.cn/blog_migrate/f8a4a8db491cd8b55e77f5e7520d33fe.png" alt="在这里插入图片描述"></p><h1 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h1><h2 id="result里的数据"><a href="#result里的数据" class="headerlink" title="result里的数据"></a>result里的数据</h2><ol><li><p>数据</p></li><li><p>成功</p></li><li><p>totalCount &#x2F;&#x2F; 看到总数多少, list方法才会有</p><p> 布尔类型, code为string类型,</p></li></ol><p>入参, 出参不要用基本类型, 鉴权</p><p>所有查询都带分页, 除非确保是能查到单条</p><h2 id="切面"><a href="#切面" class="headerlink" title="切面"></a>切面</h2><p>统一入参, 出参后才能制作切面</p><p>在serviceAspect, </p><p>所有异常都得自己捕获</p><p>接口都加注释</p><p>变量名要能表达含义, booknameFuzzy, 模糊查询用的很少</p><p>组合查询</p><p>save一般表示不关心新增或更新, 对外就提供一个save接口</p><p>异常在哪里捕获, 不能暴露在外面, 谁有能力谁捕获</p><p>slf4j, 不能出现printf,</p><p>操作失败, 要有errorCode和message</p><p>所有的方法, 要有鉴权</p><h1 id="鉴权"><a href="#鉴权" class="headerlink" title="鉴权"></a>鉴权</h1><ol><li><p>能不能调</p><p> 1.1 AccessKey, SercetKey (账号, 密码) (AK, SK)</p><p> AccessKey, </p><p> 1.2 调用</p><p> 服务端验签, AuthRequest三个参数一起, 求md5 进行验签, 黑客攻击也只能攻击时间戳之内的时间</p><p> 1.3 操作</p><p> 签名继续复杂,  旧的事 ak+sk+timestamp</p><p> ​   现在是 在加上“入参”, 求md5</p><p> 1.4 幂等</p><p> Request类加上requestID 只允许调一次, 与他人商量好, 再调几次直接返回数据库格局requestID里的数据</p></li></ol><p>引入限流的第三方包</p><p>写的业务</p><h1 id="熟悉常用的切面模型"><a href="#熟悉常用的切面模型" class="headerlink" title="熟悉常用的切面模型"></a>熟悉常用的切面模型</h1><p>tenant <a href="https://blog.csdn.net/yawei_liu1688/article/details/111521385">https://blog.csdn.net/yawei_liu1688/article/details/111521385</a></p><p>saas部署模式 <a href="https://developer.aliyun.com/article/930304">https://developer.aliyun.com/article/930304</a></p><p>rpc协议直接走的TCP</p><p>书柜上的有多少书, 书柜的类型</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>设计模式</title>
       <link href="/2024/10/23/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
       <url>/2024/10/23/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
@@ -42,6 +81,32 @@
     
     
     <entry>
+      <title></title>
+      <link href="/2024/07/29/%E8%BD%AF%E4%BB%B6/"/>
+      <url>/2024/07/29/%E8%BD%AF%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h1><p><a href="https://cloud.189.cn/web/share?code=fQZr6rNFV3iy">AcrobatDC 2022</a>  密码: 1wjc</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/2024/07/28/%E7%BD%91%E7%AB%99/"/>
+      <url>/2024/07/28/%E7%BD%91%E7%AB%99/</url>
+      
+        <content type="html"><![CDATA[<p>​</p><h1 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h1><h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><p><a href="https://uncss-online.com/">精简CSS格式</a></p><p><a href="https://www.w3ccoo.com/icons/default.html">Font Awesome 图标库</a></p><p><a href="https://www.bootcdn.cn/">BootCDN 加速服务</a></p><h1 id="合集"><a href="#合集" class="headerlink" title="合集"></a>合集</h1><p><a href="https://ai-bot.cn/">AI工具集</a><br><a href="http://yinghe.app/#term-167">动漫、音乐</a></p><h1 id="娱乐"><a href="#娱乐" class="headerlink" title="娱乐"></a>娱乐</h1><p><a href="https://www.moedm.net/">嗷呜动漫</a><br><a href="http://www.netflixgc.com/?ref=www.tboxn.com">奈飞同步</a></p><h1 id="破解下载"><a href="#破解下载" class="headerlink" title="破解下载"></a>破解下载</h1><p><a href="https://snapany.com/zh/bilibili">B站视频解析下载</a><br><a href="https://greasyfork.org/zh-CN/scripts/469354-%E7%99%BE%E5%BA%A6%E6%96%87%E5%BA%93-%E6%96%87%E5%BA%93-%E4%B8%8B%E8%BD%BD-%E5%A4%8D%E5%88%B6-wenku-vip-word-gpt-%E6%96%87%E5%BA%93gpt-%E6%96%87%E7%AB%A0%E7%94%9F%E6%88%90-%E6%96%87%E6%A1%A3%E6%90%9C%E7%B4%A2-%E6%AC%A2%E8%BF%8E%E5%8F%8D%E9%A6%88-%E5%BA%A6%E6%96%87%E5%BA%93-%E4%B8%8D%E5%AE%9A%E6%97%B6%E7%A6%8F%E5%88%A9">文档下载-脚本</a></p><h2 id="mac软件专版"><a href="#mac软件专版" class="headerlink" title="mac软件专版"></a>mac软件专版</h2><p><a href="https://xclient.info/">xclient</a><br><a href="https://macwk.com.cn/">macwk</a><br><a href="https://maczz.net/">mac软件分享站</a><br><a href="https://www.macz.com/">macZ</a><br><a href="https://macoshome.com/">苹果系统之家</a><br><a href="https://www.digit77.com/">digit77</a></p><h1 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h1><p><a href="https://www.iodraw.com/">ioDraw制作图</a><br><a href="https://convertio.co/zh/">Convertio — 文件转换器</a><br><a href="https://tools.pdf24.org/zh">PDF处理</a><br><a href="https://www.uugai.com/?utm_source=aihub.cn">​LOGO</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>蓝桥杯</title>
       <link href="/2024/07/10/%E8%93%9D%E6%A1%A5%E6%9D%AF/"/>
       <url>/2024/07/10/%E8%93%9D%E6%A1%A5%E6%9D%AF/</url>
@@ -54,6 +119,19 @@
           <category> ACM </category>
           
       </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>分类</title>
+      <link href="/2024/07/09/redis/"/>
+      <url>/2024/07/09/redis/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://www.bilibili.com/video/BV1cr4y1671t?vd_source=1fe9ce480dea8aeec9cfb16d0b62381f&spm_id_from=333.788.videopod.episodes&p=13">黑马Redis</a></p><h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><h2 id="通用"><a href="#通用" class="headerlink" title="通用"></a>通用</h2><p><code>keys</code>  查看符合模板的所有key, 不建议在生产环境设备上使用</p><p><code>del</code> 删除一个指定的key</p><p><code>exists</code> 判断key是否存在</p><p><code>expire</code> 给一个key设置有效期, 有效期一到该key会自动删除</p><p><code>ttl</code> 查看一个key剩余有效期</p><h2 id="SortedSet-类型"><a href="#SortedSet-类型" class="headerlink" title="SortedSet 类型"></a>SortedSet 类型</h2><p>可排序的set集合</p><p>每一个元素都带有一个score属性, 可以基于score属性对元素排序, </p><h1 id="java客户端"><a href="#java客户端" class="headerlink" title="java客户端"></a>java客户端</h1><ul><li>Jedis和Lettuce：这两个主要是提供了Redis命令对应的API，方便我们操作Redis，而SpringDataRedis又对这两种做了抽象和封装，因此我们后期会直接以SpringDataRedis来学习。</li><li>Redisson：是在Redis基础上实现了分布式的可伸缩的java数据结构，例如Map、Queue等，而且支持跨进程的同步机制：Lock、Semaphore等待，比较适合用来实现特殊的功能需求。</li></ul>]]></content>
+      
       
       
     </entry>
@@ -81,10 +159,10 @@
     
     <entry>
       <title>第一次</title>
-      <link href="/2024/07/05/%E7%AC%AC%E4%B8%80%E6%AC%A1/"/>
-      <url>/2024/07/05/%E7%AC%AC%E4%B8%80%E6%AC%A1/</url>
+      <link href="/2024/07/05/Unicode/"/>
+      <url>/2024/07/05/Unicode/</url>
       
-        <content type="html"><![CDATA[<p>拉阿拉阿拉阿拉</p>]]></content>
+        <content type="html"><![CDATA[<p>[TOC]</p><p>Unicode 字符集规定必须用两个字节, 即16位-32位, 只需一个字节的字符在网络进行传输会浪费带宽资源, 于是就有了中间格式的字符集, 被称为“统一的格式转换” (Unicode Transformation format)</p><h1 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h1><p>别名utf8mb3, 是针对Unicode的一种可变长度的字符编码</p><p>一个英文字符在UTF-8编码中占一个字节， 一个汉字占三个字节。</p><h1 id="utf8mb4"><a href="#utf8mb4" class="headerlink" title="utf8mb4"></a>utf8mb4</h1><p>mb4 - most bytes 4, 即最多使用4个字节来表示完整的utf-8</p><ul><li>支持BMP和补充字符</li><li>每个多字节字符最多需要四个字节</li></ul><p>增加了 emoji的支持</p>]]></content>
       
       
       
